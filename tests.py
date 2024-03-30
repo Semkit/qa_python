@@ -46,24 +46,34 @@ class TestBooksCollector:
 
     def test_get_books_for_children_with_every_genre(self):
         collector = BooksCollector()
-        collector.books_genre = {
-            'Мастер и Маргарита': 'Фантастика',
-            'Сияние': 'Ужасы',
-            'Пуаро': 'Детективы',
-            'Дживс и Вустер': 'Комедии',
-            'Капитан Врунгель': 'Мультфильмы'
-        }
+
+        collector.add_new_book('Мастер и Маргарита')
+        collector.set_book_genre('Мастер и Маргарита', 'Фантастика')
+        collector.add_new_book('Сияние')
+        collector.set_book_genre('Сияние','Ужасы')
+        collector.add_new_book('Пуаро')
+        collector.set_book_genre('Пуаро','Детективы')
+        collector.add_new_book('Дживс и Вустер')
+        collector.set_book_genre('Дживс и Вустер', 'Комедии')
+        collector.add_new_book('Капитан Врунгель')
+        collector.set_book_genre('Капитан Врунегль','Мультфильмы')
+
         assert 'Сияние' and 'Пуаро' not in collector.get_books_for_children()
 
     def test_add_book_in_favorites_one_positive_one_negative(self):
         collector = BooksCollector()
-        collector.books_genre = {
-            'Мастер и Маргарита': 'Фантастика',
-            'Сияние': 'Ужасы',
-            'Пуаро': 'Детективы',
-            'Дживс и Вустер': 'Комедии',
-            'Капитан Врунгель': 'Мультфильмы'
-        }
+
+        collector.add_new_book('Мастер и Маргарита')
+        collector.set_book_genre('Мастер и Маргарита', 'Фантастика')
+        collector.add_new_book('Сияние')
+        collector.set_book_genre('Сияние', 'Ужасы')
+        collector.add_new_book('Пуаро')
+        collector.set_book_genre('Пуаро', 'Детективы')
+        collector.add_new_book('Дживс и Вустер')
+        collector.set_book_genre('Дживс и Вустер', 'Комедии')
+        collector.add_new_book('Капитан Врунгель')
+        collector.set_book_genre('Капитан Врунегль', 'Мультфильмы')
+
         collector.add_book_in_favorites('Мастер и Маргарита')
         collector.add_book_in_favorites('Ночной дозор')
         assert len(collector.get_list_of_favorites_books()) == 1
@@ -77,12 +87,17 @@ class TestBooksCollector:
     @pytest.mark.parametrize('genre', ['Мьюзиклы', 'Обучающие','Исторические'])
     def test_get_book_with_specific_genre_negative(self, genre):
         collector = BooksCollector()
-        collector.books_genre = {
-            'Мастер и Маргарита': 'Фантастика',
-            'Сияние': 'Ужасы',
-            'Пуаро': 'Детективы',
-            'Дживс и Вустер': 'Комедии',
-            'Капитан Врунгель': 'Мультфильмы'
-        }
+
+        collector.add_new_book('Мастер и Маргарита')
+        collector.set_book_genre('Мастер и Маргарита', 'Фантастика')
+        collector.add_new_book('Сияние')
+        collector.set_book_genre('Сияние', 'Ужасы')
+        collector.add_new_book('Пуаро')
+        collector.set_book_genre('Пуаро', 'Детективы')
+        collector.add_new_book('Дживс и Вустер')
+        collector.set_book_genre('Дживс и Вустер', 'Комедии')
+        collector.add_new_book('Капитан Врунгель')
+        collector.set_book_genre('Капитан Врунегль', 'Мультфильмы')
+
         assert collector.get_books_with_specific_genre(genre) == []
 
