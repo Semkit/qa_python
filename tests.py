@@ -26,13 +26,13 @@ class TestBooksCollector:
         collector.set_book_genre('Задача трёх тел', 'Ужасы')
         collector.set_book_genre('Задача трёх тел', 'Фантастика')
 
-        assert collector.books_genre.get('Задача трёх тел') == 'Фантастика'
+        assert collector.get_book_genre('Задача трёх тел') == 'Фантастика'
 
     def test_add_new_book_no_genre(self):
         collector = BooksCollector()
         collector.add_new_book('Задача трёх тел')
 
-        assert collector.books_genre.get('Задача трёх тел') == ''
+        assert collector.get_book_genre('Задача трёх тел') == ''
 
     def test_get_books_with_specific_genre_positive(self):
         collector = BooksCollector()
@@ -80,7 +80,7 @@ class TestBooksCollector:
 
     def test_delete_book_from_favorites_one_book(self):
         collector = BooksCollector()
-        collector.favorites.append('Мастер и Маргарита')
+        collector.add_book_in_favorites('Мастер и Маргарита')
         collector.delete_book_from_favorites('Мастер и Маргарита')
         assert len(collector.get_list_of_favorites_books()) == 0
 
